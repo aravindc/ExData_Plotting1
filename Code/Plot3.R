@@ -1,6 +1,7 @@
 headr <- read.csv("Data/household_power_consumption.txt",header=FALSE,sep=";",nrows = 1)
 expdata <- read.csv("Data/household_power_consumption.txt",header=TRUE,sep=";",skip=66636,nrows = 2880)
 colnames(expdata) <- unlist(headr)
+expdata$DateTime <- as.POSIXct(paste(expdata$Date, expdata$Time), format="%d/%m/%Y %H:%M:%S")
 plot(expdata$DateTime,expdata$Sub_metering_1,type="l",ylim=c(0,max(expdata$Sub_metering_1)),xlab="",ylab="Global sub metering")
 points(expdata$DateTime,expdata$Sub_metering_2,type="l",ylim=c(0,max(expdata$Sub_metering_1)),xlab="",ylab="Global sub metering",col="red")
 points(expdata$DateTime,expdata$Sub_metering_3,type="l",ylim=c(0,max(expdata$Sub_metering_1)),xlab="",ylab="Global sub metering",col="blue")
