@@ -2,6 +2,7 @@ headr <- read.csv("Data/household_power_consumption.txt",header=FALSE,sep=";",nr
 expdata <- read.csv("Data/household_power_consumption.txt",header=TRUE,sep=";",skip=66636,nrows = 2880)
 colnames(expdata) <- unlist(headr)
 expdata$DateTime <- as.POSIXct(paste(expdata$Date, expdata$Time), format="%d/%m/%Y %H:%M:%S")
+par(mar=c(4,4,2,2))
 par(mfrow=c(2,2))
 plot(expdata$DateTime,expdata$Global_active_power,type="l",xlab="",ylab="Global Active Power")
 plot(expdata$DateTime,expdata$Voltage,type="l",xlab="datetime",ylab="Voltage")
